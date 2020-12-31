@@ -45,6 +45,7 @@ stages:
       inputs:
         command: 'restore'
         projects: '$(workingDirectory)/*.csproj'
+        restoreArguments: '--packages $(NUGET_PACKAGES)'
         feedsToUse: 'select'
 
     - task: DotNetCoreCLI@2
