@@ -30,7 +30,7 @@ namespace ServerlessContagem
                     _CONTADOR.Local,
                     _CONTADOR.Kernel,
                     _CONTADOR.TargetFramework,
-                    MensagemFixa = "Teste no Azure... 1 2 3 4... Segundo teste",
+                    MensagemFixa = "Teste no Azure... 1 2 3 4... Terceiro teste",
                     MensagemVariavel = Environment.GetEnvironmentVariable("MensagemVariavel")
                 });
             }
