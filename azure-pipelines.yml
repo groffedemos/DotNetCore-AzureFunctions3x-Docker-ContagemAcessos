@@ -37,7 +37,7 @@ stages:
 
     - task: Cache@2
       inputs:
-        key: 'nuget | "$(Agent.OS)" | **/packages.lock.json,!**/bin/**,!**/obj/**'
+        key: 'nuget | "$(Agent.OS)" | **/ServerlessContagem.csproj,!**/bin/**,!**/obj/**'
         restoreKeys: |
           nuget | "$(Agent.OS)"
         path: $(NUGET_PACKAGES)
