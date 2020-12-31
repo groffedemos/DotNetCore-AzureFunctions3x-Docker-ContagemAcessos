@@ -32,19 +32,13 @@ stages:
       vmImage: $(vmImageName)
 
     steps:
-    - script: |
-        echo $(NUGET_PACKAGES)
-        ls $(NUGET_PACKAGES)
-      displayName: 'Exibir diretório NuGet'
-
     - task: Cache@2
       inputs:
-        key: 'teste2 | "$(Agent.OS)" | **/ServerlessContagem.csproj,!**/bin/**,!**/obj/**'
+        key: 'nuget | "$(Agent.OS)" | **/packages.lock.json,!**/bin/**'
         restoreKeys: |
-          teste2 | "$(Agent.OS)"
-          teste2
+          nuget | "$(Agent.OS)"
         path: $(NUGET_PACKAGES)
-      displayName: 'Cache NuGet packages'
+      displayName: Cache NuGet packages
 
     - task: DotNetCoreCLI@2
       displayName: Restore
