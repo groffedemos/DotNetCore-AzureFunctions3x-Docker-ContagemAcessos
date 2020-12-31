@@ -30,6 +30,9 @@ stages:
       vmImage: $(vmImageName)
 
     steps:
+    - script: dotnet nuget locals global-packages -l
+      displayName: 'Find cache location'
+
     - task: DotNetCoreCLI@2
       displayName: Build
       inputs:
