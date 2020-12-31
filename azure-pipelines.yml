@@ -45,6 +45,13 @@ stages:
       displayName: 'Cache NuGet packages'
 
     - task: DotNetCoreCLI@2
+      displayName: Restore
+      inputs:
+        command: 'restore'
+        projects: '$(workingDirectory)/*.csproj'
+        feedsToUse: 'select'
+
+    - task: DotNetCoreCLI@2
       displayName: Build
       inputs:
         command: 'build'
