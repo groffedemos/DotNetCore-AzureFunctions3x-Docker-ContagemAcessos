@@ -18,6 +18,8 @@ variables:
 
   # Working Directory
   workingDirectory: '$(System.DefaultWorkingDirectory)/ServerlessContagem'
+  
+  NUGET_PACKAGES: $(Pipeline.Workspace)/.nuget/packages
 
 stages:
 - stage: Build
@@ -30,8 +32,12 @@ stages:
       vmImage: $(vmImageName)
 
     steps:
+    
     - script: dotnet nuget locals global-packages -l
       displayName: 'Find cache location'
+
+    - script: echo $(NUGET_PACKAGES)
+      displayName: 'Exibir diretório NuGet'
 
     - task: DotNetCoreCLI@2
       displayName: Build
