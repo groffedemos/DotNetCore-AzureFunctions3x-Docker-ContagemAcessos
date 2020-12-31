@@ -39,6 +39,14 @@ stages:
     - script: echo $(NUGET_PACKAGES)
       displayName: 'Exibir diretório NuGet'
 
+    - task: Cache@2
+      inputs:
+        key: 'nuget | "$(Agent.OS)" | **/packages.lock.json,!**/bin/**,!**/obj/**'
+        restoreKeys: |
+          nuget | "$(Agent.OS)"
+        path: $(NUGET_PACKAGES)
+      displayName: Cache NuGet packages
+
     - task: DotNetCoreCLI@2
       displayName: Build
       inputs:
@@ -54,6 +62,11 @@ stages:
         includeRootFolder: false
         archiveType: zip
         archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+- task: Cache@2
+  inputs:
+    key: 'nuget | "$(Agent.OS)" | **/packages.lock.json,!**/bin/**,!**/obj/**'
+    path: '$(NUGET_PACKAGES)'
+    restoreKeys: 'nuget | "$(Agent.OS)"'
         replaceExistingArchive: true
 
     - publish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
