@@ -32,10 +32,6 @@ stages:
       vmImage: $(vmImageName)
 
     steps:
-    
-    - script: dotnet nuget locals global-packages -l
-      displayName: 'Find cache location'
-
     - script: echo $(NUGET_PACKAGES)
       displayName: 'Exibir diretório NuGet'
 
@@ -45,7 +41,7 @@ stages:
         restoreKeys: |
           nuget | "$(Agent.OS)"
         path: $(NUGET_PACKAGES)
-      displayName: Cache NuGet packages
+      displayName: 'Cache NuGet packages'
 
     - task: DotNetCoreCLI@2
       displayName: Build
