@@ -37,9 +37,10 @@ stages:
 
     - task: Cache@2
       inputs:
-        key: 'nuget | "$(Agent.OS)" | **/ServerlessContagem.csproj,!**/bin/**,!**/obj/**'
+        key: 'teste | "$(Agent.OS)" | **/ServerlessContagem.csproj,!**/bin/**,!**/obj/**'
         restoreKeys: |
-          nuget | "$(Agent.OS)"
+          teste | "$(Agent.OS)"
+          teste
         path: $(NUGET_PACKAGES)
       displayName: 'Cache NuGet packages'
 
