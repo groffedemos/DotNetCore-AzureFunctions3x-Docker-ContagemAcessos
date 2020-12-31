@@ -32,7 +32,9 @@ stages:
       vmImage: $(vmImageName)
 
     steps:
-    - script: echo $(NUGET_PACKAGES)
+    - script: |
+        echo $(NUGET_PACKAGES)
+        ls $(NUGET_PACKAGES)
       displayName: 'Exibir diretório NuGet'
 
     - task: Cache@2
